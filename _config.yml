@@ -104,4 +104,4 @@ theme: landscape
 deploy:
   type: git
   repository: https://github.com/yang-zhang99/yang-zhang99.github.io
-  branch: master
+  branch: main
