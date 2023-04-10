@@ -3,13 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 个人博客
 subtitle: ''
-description: ''
+description: 静心 独立 相信 真诚
 keywords:
-author: John Doe
-language: en
+author: Yang99
+# language: zh-tw
 timezone: ''
+
+favicon: /assets/favicon.ico
+
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -97,7 +100,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
