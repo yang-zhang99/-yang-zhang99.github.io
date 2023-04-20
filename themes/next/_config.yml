@@ -97,10 +97,10 @@ creative_commons:
 # ---------------------------------------------------------------
 
 # Schemes
-scheme: Muse
+# scheme: Muse
 #scheme: Mist
 #scheme: Pisces
-#scheme: Gemini
+scheme: Gemini
 
 # Dark Mode
 darkmode: false
@@ -115,20 +115,23 @@ darkmode: false
 # Value before `||` delimiter is the target link, value after `||` delimiter is the name of Font Awesome icon.
 # When running the site in a subdirectory (e.g. yoursite.com/blog), remove the leading slash from link value (/archives -> archives).
 # External url should start with http:// or https://
+# 菜单设置为 菜单名: /菜单目录 || 菜单图标名字
 menu:
-  home: / || fa fa-home
-  #about: /about/ || fa fa-user
-  #tags: /tags/ || fa fa-tags
-  #categories: /categories/ || fa fa-th
-  archives: /archives/ || fa fa-archive
-  #schedule: /schedule/ || fa fa-calendar
-  #sitemap: /sitemap.xml || fa fa-sitemap
-  #commonweal: /404/ || fa fa-heartbeat
+  home: / || home
+  about: /about/ || user
+  tags: /tags/ || tags
+  categories: /categories/ || th
+  archives: /archives/ || archive
+  #schedule: /schedule/ || calendar
+  sitemap: /sitemap.xml || sitemap
+  commonweal: /404/ || heartbeat
 
 # Enable / Disable menu icons / item badges.
 menu_settings:
-  icons: true
-  badges: false
+  icons: true   # 显示图标
+  badges: true  # 显示统计信息
+
+
 
 
 # ---------------------------------------------------------------
@@ -240,12 +243,12 @@ read_more_btn: true
 
 # Post meta display settings
 post_meta:
-  item_text: true
-  created_at: true
+  item_text: false    # 设为true 可以一行显示，文章的所有属性
+  created_at: true    # 显示创建时间
   updated_at:
-    enable: true
-    another_day: true
-  categories: true
+    enabled: true     # 显示修改的时间
+    another_day: true # 设true时，如果创建时间和修改时间一样则显示一个时间
+  categories: true    # 显示分类信息
 
 # Post wordcount display settings
 # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
@@ -999,3 +1002,11 @@ images: images
 post_end_tag:
   enabled: true  # 是否开启文末的本文结束标记
   icon: paw # 结束标记之间的图标
+
+
+scroll_to_more: true      # 点击阅读全文后是否跳到<!--more-->标记处,设为false时点击阅读全文可以从头阅读
+save_scroll: false        # 自动保存每篇文章或页面上一次滚动的地方
+
+auto_excerpt:   # 是否自动截取摘要
+  enable: false # 设置为true则自动截取150字当做首页摘要
+  length: 150   # 自动截取的字数
