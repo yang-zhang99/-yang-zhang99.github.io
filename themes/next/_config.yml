@@ -117,7 +117,7 @@ darkmode: false
 # External url should start with http:// or https://
 # 菜单设置为 菜单名: /菜单目录 || 菜单图标名字
 menu:
-  home: / || home
+  home: / || 首页
   # about: /about/ || user
   # tags: /tags/ || tags
   # categories: /categories/ || th
@@ -847,11 +847,11 @@ motion:
 # Dependencies: https://github.com/theme-next/theme-next-pace
 # For more information: https://github.com/HubSpot/pace
 pace:
-  enable: false
+  enable: true
   # Themes list:
   # big-counter | bounce | barber-shop | center-atom | center-circle | center-radar | center-simple
   # corner-indicator | fill-left | flat-top | flash | loading-bar | mac-osx | material | minimal
-  theme: minimal
+  theme: big-counter
 
 # JavaScript 3D library.
 # Dependencies: https://github.com/theme-next/theme-next-three
@@ -1008,5 +1008,5 @@ scroll_to_more: true      # 点击阅读全文后是否跳到<!--more-->标记�
 save_scroll: false        # 自动保存每篇文章或页面上一次滚动的地方
 
 auto_excerpt:   # 是否自动截取摘要
-  enable: false # 设置为true则自动截取150字当做首页摘要
+  enable: true # 设置为true则自动截取150字当做首页摘要
   length: 150   # 自动截取的字数
