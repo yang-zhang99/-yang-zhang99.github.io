@@ -1,3 +1,3 @@
-# 知识共享地一个个人平台
+# 博客
 
 地址： https://yang-zhang99.github.io/
