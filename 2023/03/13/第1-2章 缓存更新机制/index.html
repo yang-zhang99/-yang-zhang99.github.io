@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-big-counter.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="来自网络：缓存更新的套路 | 酷 壳 - CoolShell 其实并不只是软件架构里的 MySQL 数据库和 Memcache&#x2F;Redis 的更新策略，这些东西都是计算机体系结构里的设计，比如 CPU 的缓存，硬盘文件系统中的缓存，硬盘上的缓存，数据库中的缓存。基本上来说，这些缓存更新的设计模式都是非常老古董的，而且历经长时间考验的策略，所以这也就是，工程学上所谓的 Best Pract">
+<meta property="og:type" content="article">
+<meta property="og:title" content="缓存">
+<meta property="og:url" content="http://example.com/2023/03/13/%E7%AC%AC1-2%E7%AB%A0%20%E7%BC%93%E5%AD%98%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="来自网络：缓存更新的套路 | 酷 壳 - CoolShell 其实并不只是软件架构里的 MySQL 数据库和 Memcache&#x2F;Redis 的更新策略，这些东西都是计算机体系结构里的设计，比如 CPU 的缓存，硬盘文件系统中的缓存，硬盘上的缓存，数据库中的缓存。基本上来说，这些缓存更新的设计模式都是非常老古董的，而且历经长时间考验的策略，所以这也就是，工程学上所谓的 Best Pract">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/source/_posts/_%E9%99%84%E4%BB%B6/Cache%20Aside%20Pattern.png">
+<meta property="og:image" content="http://example.com/source/_posts/_%E9%99%84%E4%BB%B6/ReadWriteThroughPattern.png">
+<meta property="og:image" content="http://example.com/source/_posts/_%E9%99%84%E4%BB%B6/Write%20Behind%20Caching%20Pattern.png">
+<meta property="article:published_time" content="2023-03-13T00:00:00.000Z">
+<meta property="article:modified_time" content="2023-04-27T06:52:17.997Z">
+<meta property="article:author" content="Yang99">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/source/_posts/_%E9%99%84%E4%BB%B6/Cache%20Aside%20Pattern.png">
+
+<link rel="canonical" href="http://example.com/2023/03/13/%E7%AC%AC1-2%E7%AB%A0%20%E7%BC%93%E5%AD%98%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>缓存 | 个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="首页 fa-fw"></i>首页</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/13/%E7%AC%AC1-2%E7%AB%A0%20%E7%BC%93%E5%AD%98%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Yang99">
+      <meta itemprop="description" content="静心 独立 相信 真诚">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          缓存
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-03-13 00:00:00" itemprop="dateCreated datePublished" datetime="2023-03-13T00:00:00+00:00">2023-03-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%93%E5%AD%98/" itemprop="url" rel="index"><span itemprop="name">缓存</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2023/03/13/%E7%AC%AC1-2%E7%AB%A0%20%E7%BC%93%E5%AD%98%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6/" class="post-meta-item leancloud_visitors" data-flag-title="缓存" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2023/03/13/%E7%AC%AC1-2%E7%AB%A0%20%E7%BC%93%E5%AD%98%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/03/13/%E7%AC%AC1-2%E7%AB%A0%20%E7%BC%93%E5%AD%98%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>来自网络：<a target="_blank" rel="noopener" href="https://coolshell.cn/articles/17416.html">缓存更新的套路 | 酷 壳 - CoolShell</a></p>
+<p>其实并不只是软件架构里的 MySQL 数据库和 Memcache&#x2F;Redis 的更新策略，这些东西都是计算机体系结构里的设计，比如 CPU 的缓存，硬盘文件系统中的缓存，硬盘上的缓存，数据库中的缓存。基本上来说，这些缓存更新的设计模式都是非常老古董的，而且历经长时间考验的策略，所以这也就是，工程学上所谓的 Best Practice，遵从就好了。</p>
+<p>更新缓存的的 Design Pattern 有四种：</p>
+<ol>
+<li>Cache aside</li>
+<li>Read through</li>
+<li>Write through</li>
+<li>Write behind caching</li>
+</ol>
+<h2 id="0-错误做法"><a href="#0-错误做法" class="headerlink" title="0 错误做法"></a>0 错误做法</h2><p>看到好些人在写更新缓存数据代码时，先删除缓存，然后再更新数据库，而后续的操作会把数据再装载的缓存中。然而，这个是逻辑是错误的。</p>
+<p>试想，两个并发操作，一个是更新操作，另一个是查询操作，更新操作删除缓存后，查询操作没有命中缓存，先把老数据读出来后放到缓存中，然后更新操作更新了数据库。于是，在缓存中的数据还是老的数据，导致缓存中的数据是脏的，而且还一直这样脏下去了。</p>
+<h2 id="1-Cache-Aside-Pattern"><a href="#1-Cache-Aside-Pattern" class="headerlink" title="1 Cache Aside Pattern"></a>1 Cache Aside Pattern</h2><ol>
+<li>失效：应用程序先从 Cache 取数据，没有得到，则从数据库中取数据，成功后，放到缓存中。</li>
+<li>命中：应用程序从 Cache 中取数据，取到后返回。</li>
+<li>更新：先把数据存到数据库中，成功后，再让缓存失效。<br><img src="/source/_posts/_%E9%99%84%E4%BB%B6/Cache%20Aside%20Pattern.png" alt="Cache Aside Pattern.png"></li>
+</ol>
+<h2 id="2-Read-x2F-Write-Through-Pattern"><a href="#2-Read-x2F-Write-Through-Pattern" class="headerlink" title="2 Read &#x2F; Write Through Pattern"></a>2 Read &#x2F; Write Through Pattern</h2><p>更新数据库（Repository）的操作由缓存自己代理了，所以，对于应用层来说，就简单很多了。<br>可以理解为，应用认为后端就是一个单一的存储，而存储自己维护自己的 Cache。</p>
+<ol>
+<li>Read Through：Read Through 套路就是在查询操作中更新缓存，也就是说，当缓存失效的时候（过期或LRU换出），Cache Aside 是由调用方负责把数据加载入缓存，而 Read Through 则用缓存服务自己来加载，从而对应用方是透明的。</li>
+<li>Write Through：Write Through 套路和 Read Through 相仿，不过是在更新数据时发生。当有数据更新的时候，如果没有命中缓存，直接更新数据库，然后返回。如果命中了缓存，则更新缓存，然后再由 Cache 自己更新数据库（这是一个同步操作）。<br><img src="/source/_posts/_%E9%99%84%E4%BB%B6/ReadWriteThroughPattern.png" alt="ReadWriteThroughPattern.png"></li>
+</ol>
+<h2 id="4-Write-Behind-Caching-Pattern"><a href="#4-Write-Behind-Caching-Pattern" class="headerlink" title="4 Write Behind Caching Pattern"></a>4 Write Behind Caching Pattern</h2><p>Linux 文件系统的 Page Cache 的算法。<br>在更新数据的时候，只更新缓存，不更新数据库，而我们的缓存会异步地批量更新数据库。</p>
+<ol>
+<li>这个设计的好处就是让数据的 I&#x2F;O 操作飞快无比（因为直接操作内存嘛 ），因为异步，write backg 还可以合并对同一个数据的多次操作，所以性能的提高是相当可观的。</li>
+<li>但是，其带来的问题是，数据不是强一致性的，而且可能会丢失（我们知道 Unix&#x2F;Linux 非正常关机会导致数据丢失，就是因为这个事）。<br><img src="/source/_posts/_%E9%99%84%E4%BB%B6/Write%20Behind%20Caching%20Pattern.png" alt="Write Behind Caching Pattern.png"></li>
+</ol>
+<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5 总结"></a>5 总结</h2><p>在软件设计上，我们基本上不可能做出一个没有缺陷的设计，就像算法设计中的时间换空间，空间换时间一个道理，有时候，强一致性和高性能，高可用和高性性是有冲突的。软件设计从来都是取舍 Trade-Off。</p>
+<p>另外，Write Back 实现逻辑比较复杂，因为他需要 Track 有哪数据是被更新了的，需要刷到持久层上。操作系统的 write back 会在仅当这个 cache 需要失效的时候，才会被真正持久起来，比如，内存不够了，或是进程退出了等情况，这又叫 lazy write。</p>
+
+    </div>
+
+    
+    
+    
+
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/03/13/HTTP%20%E7%8A%B6%E6%80%81%E7%A0%81/" rel="next" title="HTTP 状态码">
+      HTTP 状态码 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-%E9%94%99%E8%AF%AF%E5%81%9A%E6%B3%95"><span class="nav-text">0 错误做法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Cache-Aside-Pattern"><span class="nav-text">1 Cache Aside Pattern</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Read-x2F-Write-Through-Pattern"><span class="nav-text">2 Read &#x2F; Write Through Pattern</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Write-Behind-Caching-Pattern"><span class="nav-text">4 Write Behind Caching Pattern</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%80%BB%E7%BB%93"><span class="nav-text">5 总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yang99"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Yang99</p>
+  <div class="site-description" itemprop="description">静心 独立 相信 真诚</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yang-zhang99" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yang-zhang99" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yang.zhang99@outlook.com" title="E-Mail → yang.zhang99@outlook.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yang99</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'PmUfsojKhaTM4pIZZSVftlX0-gzGzoHsz',
+      appKey     : 'HJxe6QPi7goA84vJ5k2zKyl9',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
