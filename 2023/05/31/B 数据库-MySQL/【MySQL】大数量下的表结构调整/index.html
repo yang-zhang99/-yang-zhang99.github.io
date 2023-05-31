@@ -22,19 +22,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1. 资料英文官网： https:&#x2F;&#x2F;redis.io&#x2F;中文翻译： http:&#x2F;&#x2F;www.redis.cn书籍：《Redis 实战》Redis实战 — Redis 实战 2. Redis 简介2.1. 它是什么？为什么使用 Redis？ 解决什么问题？方案！对比？   对于一个系统而言，海量的高并发读是一个很常见的性能问题，缓存是其中的一项解决方法，本质上是空间换取时间。 缓存， NoSQL「no">
+  <meta name="description" content="参考博客： https:&#x2F;&#x2F;blog.csdn.net&#x2F;procrastination&#x2F;article&#x2F;details&#x2F;116056306  大数据量表调整表结构时，有时间会非常慢并且会失败，所以一种比较好的方法是通过类似表修改。 正式环境操作数据一定要当心。  1. 创建需要修改表的类似表1CREATE TABLE vehicle_bak like vehicle;  2. 修改类似表的表结构和">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第1-1章 Redis 基础概念">
-<meta property="og:url" content="http://example.com/2023/04/20/B.%20%E7%BC%93%E5%AD%98-Redis/%E7%AC%AC1-1%E7%AB%A0%20Redis%20%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:title" content="【MySQL】大数量下的表结构调整">
+<meta property="og:url" content="http://example.com/2023/05/31/B%20%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL/%E3%80%90MySQL%E3%80%91%E5%A4%A7%E6%95%B0%E9%87%8F%E4%B8%8B%E7%9A%84%E8%A1%A8%E7%BB%93%E6%9E%84%E8%B0%83%E6%95%B4/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="1. 资料英文官网： https:&#x2F;&#x2F;redis.io&#x2F;中文翻译： http:&#x2F;&#x2F;www.redis.cn书籍：《Redis 实战》Redis实战 — Redis 实战 2. Redis 简介2.1. 它是什么？为什么使用 Redis？ 解决什么问题？方案！对比？   对于一个系统而言，海量的高并发读是一个很常见的性能问题，缓存是其中的一项解决方法，本质上是空间换取时间。 缓存， NoSQL「no">
+<meta property="og:description" content="参考博客： https:&#x2F;&#x2F;blog.csdn.net&#x2F;procrastination&#x2F;article&#x2F;details&#x2F;116056306  大数据量表调整表结构时，有时间会非常慢并且会失败，所以一种比较好的方法是通过类似表修改。 正式环境操作数据一定要当心。  1. 创建需要修改表的类似表1CREATE TABLE vehicle_bak like vehicle;  2. 修改类似表的表结构和">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-04-20T00:00:00.000Z">
+<meta property="article:published_time" content="2023-05-31T00:00:00.000Z">
 <meta property="article:modified_time" content="2023-05-31T08:13:54.279Z">
 <meta property="article:author" content="Yang99">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2023/04/20/B.%20%E7%BC%93%E5%AD%98-Redis/%E7%AC%AC1-1%E7%AB%A0%20Redis%20%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/">
+<link rel="canonical" href="http://example.com/2023/05/31/B%20%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL/%E3%80%90MySQL%E3%80%91%E5%A4%A7%E6%95%B0%E9%87%8F%E4%B8%8B%E7%9A%84%E8%A1%A8%E7%BB%93%E6%9E%84%E8%B0%83%E6%95%B4/">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>第1-1章 Redis 基础概念 | 个人博客</title>
+  <title>【MySQL】大数量下的表结构调整 | 个人博客</title>
   
 
 
@@ -143,7 +143,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/20/B.%20%E7%BC%93%E5%AD%98-Redis/%E7%AC%AC1-1%E7%AB%A0%20Redis%20%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/31/B%20%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL/%E3%80%90MySQL%E3%80%91%E5%A4%A7%E6%95%B0%E9%87%8F%E4%B8%8B%E7%9A%84%E8%A1%A8%E7%BB%93%E6%9E%84%E8%B0%83%E6%95%B4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -156,7 +156,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          第1-1章 Redis 基础概念
+          【MySQL】大数量下的表结构调整
         </h1>
 
         <div class="post-meta">
@@ -166,7 +166,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2023-04-20 00:00:00" itemprop="dateCreated datePublished" datetime="2023-04-20T00:00:00+00:00">2023-04-20</time>
+              <time title="创建时间：2023-05-31 00:00:00" itemprop="dateCreated datePublished" datetime="2023-05-31T00:00:00+00:00">2023-05-31</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -174,12 +174,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/" itemprop="url" rel="index"><span itemprop="name">Redis</span></a>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL/" itemprop="url" rel="index"><span itemprop="name">数据库-MySQL</span></a>
                 </span>
             </span>
 
           
-            <span id="/2023/04/20/B.%20%E7%BC%93%E5%AD%98-Redis/%E7%AC%AC1-1%E7%AB%A0%20Redis%20%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" class="post-meta-item leancloud_visitors" data-flag-title="第1-1章 Redis 基础概念" title="阅读次数">
+            <span id="/2023/05/31/B%20%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL/%E3%80%90MySQL%E3%80%91%E5%A4%A7%E6%95%B0%E9%87%8F%E4%B8%8B%E7%9A%84%E8%A1%A8%E7%BB%93%E6%9E%84%E8%B0%83%E6%95%B4/" class="post-meta-item leancloud_visitors" data-flag-title="【MySQL】大数量下的表结构调整" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -194,8 +194,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2023/04/20/B.%20%E7%BC%93%E5%AD%98-Redis/%E7%AC%AC1-1%E7%AB%A0%20Redis%20%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2023/04/20/B.%20%E7%BC%93%E5%AD%98-Redis/%E7%AC%AC1-1%E7%AB%A0%20Redis%20%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" itemprop="commentCount"></span>
+    <a title="valine" href="/2023/05/31/B%20%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL/%E3%80%90MySQL%E3%80%91%E5%A4%A7%E6%95%B0%E9%87%8F%E4%B8%8B%E7%9A%84%E8%A1%A8%E7%BB%93%E6%9E%84%E8%B0%83%E6%95%B4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/05/31/B%20%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL/%E3%80%90MySQL%E3%80%91%E5%A4%A7%E6%95%B0%E9%87%8F%E4%B8%8B%E7%9A%84%E8%A1%A8%E7%BB%93%E6%9E%84%E8%B0%83%E6%95%B4/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -210,39 +210,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="1-资料"><a href="#1-资料" class="headerlink" title="1. 资料"></a>1. 资料</h2><p>英文官网： <a target="_blank" rel="noopener" href="https://redis.io/">https://redis.io/</a><br>中文翻译： <a target="_blank" rel="noopener" href="http://www.redis.cn/">http://www.redis.cn</a><br>书籍：《Redis 实战》<a target="_blank" rel="noopener" href="http://redisinaction.com/">Redis实战 — Redis 实战</a></p>
-<h2 id="2-Redis-简介"><a href="#2-Redis-简介" class="headerlink" title="2. Redis 简介"></a>2. Redis 简介</h2><h3 id="2-1-它是什么？为什么使用-Redis？"><a href="#2-1-它是什么？为什么使用-Redis？" class="headerlink" title="2.1. 它是什么？为什么使用 Redis？"></a>2.1. 它是什么？为什么使用 Redis？</h3><blockquote>
-<p>解决什么问题？方案！对比？</p>
+        <p>参考博客： <a target="_blank" rel="noopener" href="https://blog.csdn.net/procrastination/article/details/116056306">https://blog.csdn.net/procrastination/article/details/116056306</a></p>
+<blockquote>
+<p>大数据量表调整表结构时，有时间会非常慢并且会失败，所以一种比较好的方法是通过类似表修改。</p>
+<p><strong>正式环境操作数据一定要当心。</strong></p>
 </blockquote>
-<ol>
-<li>对于一个系统而言，海量的高并发读是一个很常见的性能问题，缓存是其中的一项解决方法，本质上是空间换取时间。</li>
-<li>缓存， NoSQL「not only sql」，非关系型的数据库。具有数据量大，运行速度快，已被广泛使用。其中 Redis 和 MongoDB 最为广泛。</li>
-<li>使用 Redis 可以很方便的扩展成为一个能够包含数百 GB 数据、每秒处理上百万次请求的系统。</li>
-<li>对于传统使用关系型数据库，比如 MySQL、Oracle 数据库，有些场景它不是很适用，比如商城的秒杀、库存的扣减、首页的访问高峰等等，对于这种高并发很容易将数据库打崩，此时就需要一层缓存中间件。目前常用的 缓存的中间件有 Redis 和 Memcache，但是我只用过 Redis。数据量大，速度。运行速度很快，将其常用数据从数据库一次性查询出来存放在 Redis 中，那么之后大部分的查询只需要基于 Redis 完成便可以了，这样将很大程度上提升网站的性能。</li>
-</ol>
-<h3 id="2-2-它的特点以及附加特性"><a href="#2-2-它的特点以及附加特性" class="headerlink" title="2.2. 它的特点以及附加特性"></a>2.2. 它的特点以及附加特性</h3><h4 id="2-2-1-特点"><a href="#2-2-1-特点" class="headerlink" title="2.2.1. 特点"></a>2.2.1. 特点</h4><ol>
-<li>以内存作为存储介质 （内存数据断电会丢失数据）</li>
-<li>存储的数据为持久化，断电或重启后，数据也不会丢失。<ol>
-<li>因为 Redis 的存储分为内存存储、磁盘存储和log文件三部分。</li>
-</ol>
-</li>
-<li>支持主从模式，所以可以配置集群。更利于支撑起大型的项目。</li>
-<li>提供了简单的事务机制，通过事务机制可以有效的保证在高并发的场景下数据的一致性。</li>
-<li>开始增加 Lua 语言的支持，并且 Lua 语言的执行是原子性的。</li>
-</ol>
-<h4 id="2-2-2-特性"><a href="#2-2-2-特性" class="headerlink" title="2.2.2. 特性"></a>2.2.2. 特性</h4><ol>
-<li>持久化方法：第一种持久化方法为时间点转储，第二种持久化方法将所有修改了数据库的命令都写入一个只追加文件里面。</li>
-<li>故障转移支持。</li>
-</ol>
-<h4 id="2-2-3-性能非常高原因"><a href="#2-2-3-性能非常高原因" class="headerlink" title="2.2.3. 性能非常高原因"></a>2.2.3. 性能非常高原因</h4><ol>
-<li>内存存储：Redis 是使用内存(in-memeroy)存储,没有磁盘 IO 上的开销。</li>
-<li>单线程实现：Redis 使用单个线程处理请求，避免了多个线程之间线程切换和锁资源争用的开销。</li>
-<li>非阻塞 IO：Redis 使用多路复用 IO 技术，在 poll，epool，kqueue 选择最优IO实现。</li>
-<li>优化的数据结构：Redis 有诸多可以直接应用的优化数据结构的实现，应用层可以直接使用原生的数据结构提升性能。</li>
-</ol>
-<h3 id="2-3-使用-Redis-的理由"><a href="#2-3-使用-Redis-的理由" class="headerlink" title="2.3. 使用 Redis 的理由"></a>2.3. 使用 Redis 的理由</h3><h4 id="2-3-1-Redis-使用场景"><a href="#2-3-1-Redis-使用场景" class="headerlink" title="2.3.1. Redis 使用场景"></a>2.3.1. Redis 使用场景</h4><p>在某些场景下，可以充分的利用 Redis 的特性，大大提高效率。这些场景包括<strong>缓存，会话缓存，时效性，访问频率，计数器，社交列表，记录用户判定信息，交集、并集和差集，热门列表与排行榜，最新动态等</strong>。</p>
-<h4 id="2-3-2-Redis-热点问题"><a href="#2-3-2-Redis-热点问题" class="headerlink" title="2.3.2. Redis 热点问题"></a>2.3.2. Redis 热点问题</h4><p>使用 Redis 做缓存的时候，需要考虑 <strong>数据不一致与脏读、缓存更新机制、缓存可用性、缓存服务降级、缓存穿透、缓存预热等缓存使用问题</strong>。</p>
+<h3 id="1-创建需要修改表的类似表"><a href="#1-创建需要修改表的类似表" class="headerlink" title="1. 创建需要修改表的类似表"></a>1. 创建需要修改表的类似表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> vehicle_bak <span class="keyword">like</span> vehicle;</span><br></pre></td></tr></table></figure>
 
+<h3 id="2-修改类似表的表结构和索引"><a href="#2-修改类似表的表结构和索引" class="headerlink" title="2. 修改类似表的表结构和索引"></a>2. 修改类似表的表结构和索引</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">可以对比两个表的查询速度，来确认自己加的索引是否合理。</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-将-原始表数据-插入到-类似表-中"><a href="#3-将-原始表数据-插入到-类似表-中" class="headerlink" title="3. 将 原始表数据 插入到 类似表 中"></a>3. 将 原始表数据 插入到 类似表 中</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> vehicle_bak <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> vehicle;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-更改表名"><a href="#4-更改表名" class="headerlink" title="4. 更改表名"></a>4. 更改表名</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rename <span class="keyword">table</span> vehicle <span class="keyword">to</span> vehicle_1;</span><br><span class="line">rename <span class="keyword">table</span> vehicle_bak <span class="keyword">to</span> vehicle;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-数据对比，确定未丢数据"><a href="#5-数据对比，确定未丢数据" class="headerlink" title="5. 数据对比，确定未丢数据"></a>5. 数据对比，确定未丢数据</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>) <span class="keyword">from</span> vehicle;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-确认没问题，删除旧表"><a href="#6-确认没问题，删除旧表" class="headerlink" title="6. 确认没问题，删除旧表"></a>6. 确认没问题，删除旧表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">truncate</span> <span class="keyword">table</span> vehicle_bak;</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> vehicle_bak;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -259,13 +242,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/03/13/HTTP%20%E7%8A%B6%E6%80%81%E7%A0%81/" rel="prev" title="HTTP 状态码">
-      <i class="fa fa-chevron-left"></i> HTTP 状态码
+    <a href="/2023/04/20/B.%20%E7%BC%93%E5%AD%98-Redis/%E7%AC%AC1-1%E7%AB%A0%20Redis%20%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" rel="prev" title="第1-1章 Redis 基础概念">
+      <i class="fa fa-chevron-left"></i> 第1-1章 Redis 基础概念
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/05/31/B%20%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL/%E3%80%90MySQL%E3%80%91%E5%A4%A7%E6%95%B0%E9%87%8F%E4%B8%8B%E7%9A%84%E8%A1%A8%E7%BB%93%E6%9E%84%E8%B0%83%E6%95%B4/" rel="next" title="【MySQL】大数量下的表结构调整">
-      【MySQL】大数量下的表结构调整 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -325,7 +305,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%B5%84%E6%96%99"><span class="nav-text">1. 资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Redis-%E7%AE%80%E4%BB%8B"><span class="nav-text">2. Redis 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E5%AE%83%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8-Redis%EF%BC%9F"><span class="nav-text">2.1. 它是什么？为什么使用 Redis？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%AE%83%E7%9A%84%E7%89%B9%E7%82%B9%E4%BB%A5%E5%8F%8A%E9%99%84%E5%8A%A0%E7%89%B9%E6%80%A7"><span class="nav-text">2.2. 它的特点以及附加特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-%E7%89%B9%E7%82%B9"><span class="nav-text">2.2.1. 特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-%E7%89%B9%E6%80%A7"><span class="nav-text">2.2.2. 特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3-%E6%80%A7%E8%83%BD%E9%9D%9E%E5%B8%B8%E9%AB%98%E5%8E%9F%E5%9B%A0"><span class="nav-text">2.2.3. 性能非常高原因</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E4%BD%BF%E7%94%A8-Redis-%E7%9A%84%E7%90%86%E7%94%B1"><span class="nav-text">2.3. 使用 Redis 的理由</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-Redis-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-text">2.3.1. Redis 使用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-Redis-%E7%83%AD%E7%82%B9%E9%97%AE%E9%A2%98"><span class="nav-text">2.3.2. Redis 热点问题</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%88%9B%E5%BB%BA%E9%9C%80%E8%A6%81%E4%BF%AE%E6%94%B9%E8%A1%A8%E7%9A%84%E7%B1%BB%E4%BC%BC%E8%A1%A8"><span class="nav-text">1. 创建需要修改表的类似表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BF%AE%E6%94%B9%E7%B1%BB%E4%BC%BC%E8%A1%A8%E7%9A%84%E8%A1%A8%E7%BB%93%E6%9E%84%E5%92%8C%E7%B4%A2%E5%BC%95"><span class="nav-text">2. 修改类似表的表结构和索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%B0%86-%E5%8E%9F%E5%A7%8B%E8%A1%A8%E6%95%B0%E6%8D%AE-%E6%8F%92%E5%85%A5%E5%88%B0-%E7%B1%BB%E4%BC%BC%E8%A1%A8-%E4%B8%AD"><span class="nav-text">3. 将 原始表数据 插入到 类似表 中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%9B%B4%E6%94%B9%E8%A1%A8%E5%90%8D"><span class="nav-text">4. 更改表名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%AF%94%EF%BC%8C%E7%A1%AE%E5%AE%9A%E6%9C%AA%E4%B8%A2%E6%95%B0%E6%8D%AE"><span class="nav-text">5. 数据对比，确定未丢数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E7%A1%AE%E8%AE%A4%E6%B2%A1%E9%97%AE%E9%A2%98%EF%BC%8C%E5%88%A0%E9%99%A4%E6%97%A7%E8%A1%A8"><span class="nav-text">6. 确认没问题，删除旧表</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
