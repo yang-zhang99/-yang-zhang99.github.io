@@ -22,19 +22,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1. 参考博客图片转 BASE64 编码： https:&#x2F;&#x2F;c.runoob.com&#x2F;front-end&#x2F;59&#x2F;图片与base64之间的互相转换「Java」： https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_41608476&#x2F;article&#x2F;details&#x2F;79354592 2. 问题描述在开发一个接口时间，对方接口需要图片的 BASE64 编码。  Base64 是一种基于 64 个可">
+  <meta name="description" content="字节  B  byte   这个单位是数据里面最重要的一个单位。 究竟占多大的空间？这是一个很敏感的思考点。  1. 单位转换（对于有些单位换算，换算相差其实是 1000）1B（byte，字节）&#x3D; 8 bit；1KB（Kibibyte，千字节）&#x3D;1024B&#x3D; $2^{10}$ B；1MB（Mebibyte，兆字节，百万字节，简称“兆”）&#x3D;1024KB&amp;#x">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【Java】String 常量字符串过长">
-<meta property="og:url" content="http://example.com/2023/06/01/B%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-Java/%E2%85%A0%20Java%20%E5%9F%BA%E7%A1%80/%E3%80%90Java%E3%80%91String%20%E5%B8%B8%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%87%E9%95%BF/index.html">
+<meta property="og:title" content="【计算机】数据单位">
+<meta property="og:url" content="http://example.com/2023/06/01/B%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Linux/I%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E3%80%91%E6%95%B0%E6%8D%AE%E5%8D%95%E4%BD%8D/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="1. 参考博客图片转 BASE64 编码： https:&#x2F;&#x2F;c.runoob.com&#x2F;front-end&#x2F;59&#x2F;图片与base64之间的互相转换「Java」： https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_41608476&#x2F;article&#x2F;details&#x2F;79354592 2. 问题描述在开发一个接口时间，对方接口需要图片的 BASE64 编码。  Base64 是一种基于 64 个可">
+<meta property="og:description" content="字节  B  byte   这个单位是数据里面最重要的一个单位。 究竟占多大的空间？这是一个很敏感的思考点。  1. 单位转换（对于有些单位换算，换算相差其实是 1000）1B（byte，字节）&#x3D; 8 bit；1KB（Kibibyte，千字节）&#x3D;1024B&#x3D; $2^{10}$ B；1MB（Mebibyte，兆字节，百万字节，简称“兆”）&#x3D;1024KB&amp;#x">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-06-01T00:00:00.000Z">
 <meta property="article:modified_time" content="2023-06-01T09:14:30.399Z">
 <meta property="article:author" content="Yang99">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2023/06/01/B%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-Java/%E2%85%A0%20Java%20%E5%9F%BA%E7%A1%80/%E3%80%90Java%E3%80%91String%20%E5%B8%B8%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%87%E9%95%BF/">
+<link rel="canonical" href="http://example.com/2023/06/01/B%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Linux/I%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E3%80%91%E6%95%B0%E6%8D%AE%E5%8D%95%E4%BD%8D/">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>【Java】String 常量字符串过长 | 个人博客</title>
+  <title>【计算机】数据单位 | 个人博客</title>
   
 
 
@@ -143,7 +143,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/06/01/B%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-Java/%E2%85%A0%20Java%20%E5%9F%BA%E7%A1%80/%E3%80%90Java%E3%80%91String%20%E5%B8%B8%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%87%E9%95%BF/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/06/01/B%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Linux/I%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E3%80%91%E6%95%B0%E6%8D%AE%E5%8D%95%E4%BD%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -156,7 +156,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          【Java】String 常量字符串过长
+          【计算机】数据单位
         </h1>
 
         <div class="post-meta">
@@ -178,12 +178,12 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-Java/Java-%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java 基础</span></a>
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-Java/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">计算机基础</span></a>
                 </span>
             </span>
 
           
-            <span id="/2023/06/01/B%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-Java/%E2%85%A0%20Java%20%E5%9F%BA%E7%A1%80/%E3%80%90Java%E3%80%91String%20%E5%B8%B8%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%87%E9%95%BF/" class="post-meta-item leancloud_visitors" data-flag-title="【Java】String 常量字符串过长" title="阅读次数">
+            <span id="/2023/06/01/B%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Linux/I%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E3%80%91%E6%95%B0%E6%8D%AE%E5%8D%95%E4%BD%8D/" class="post-meta-item leancloud_visitors" data-flag-title="【计算机】数据单位" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -198,8 +198,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2023/06/01/B%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-Java/%E2%85%A0%20Java%20%E5%9F%BA%E7%A1%80/%E3%80%90Java%E3%80%91String%20%E5%B8%B8%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%87%E9%95%BF/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2023/06/01/B%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-Java/%E2%85%A0%20Java%20%E5%9F%BA%E7%A1%80/%E3%80%90Java%E3%80%91String%20%E5%B8%B8%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%87%E9%95%BF/" itemprop="commentCount"></span>
+    <a title="valine" href="/2023/06/01/B%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Linux/I%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E3%80%91%E6%95%B0%E6%8D%AE%E5%8D%95%E4%BD%8D/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/06/01/B%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Linux/I%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E3%80%91%E6%95%B0%E6%8D%AE%E5%8D%95%E4%BD%8D/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -214,37 +214,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="1-参考博客"><a href="#1-参考博客" class="headerlink" title="1. 参考博客"></a>1. 参考博客</h2><p>图片转 BASE64 编码： <a target="_blank" rel="noopener" href="https://c.runoob.com/front-end/59/">https://c.runoob.com/front-end/59/</a><br>图片与base64之间的互相转换「Java」： <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41608476/article/details/79354592">https://blog.csdn.net/weixin_41608476/article/details/79354592</a></p>
-<h2 id="2-问题描述"><a href="#2-问题描述" class="headerlink" title="2. 问题描述"></a>2. 问题描述</h2><p>在开发一个接口时间，对方接口需要图片的 BASE64 编码。</p>
-<blockquote>
-<p>Base64 是一种基于 64 个可打印字符来表示二进制数据的表示方法。</p>
-<p>Base64 常用于在通常处理文本数据的场合，表示、传输、存储一些二进制数据，包括 MIME 的电子邮件及 XML 的一些复杂数据。<br>图片的 BASE64 编码就是可以将一幅图片数据编码成一串字符串，使用该字符串代替图片地址，从而不需要使用图片的 URL 地址。</p>
-</blockquote>
-<p>当 BASE64 编码的图片 赋值给 String 后，构建失败，提醒常量字符串过长。</p>
-<h2 id="3-探究-String"><a href="#3-探究-String" class="headerlink" title="3. 探究 String"></a>3. 探究 String</h2><p>基础知识：[[..&#x2F;..&#x2F;..&#x2F;1 想法&#x2F;【Java】2 数据类型#2.3 字符串 String]]<br>基础知识：[[..&#x2F;..&#x2F;B. 操作系统-Linux&#x2F;计算机基础知识&#x2F;数据单位]]</p>
-<p>在 Java8 之前，String 内部使用 char 类型数据存储数据， Java9 开始，该用 byte 类型数组来存储数据。所以 String 的最大存储就是数组能存储的最大数量。</p>
-<p>数组有两种限制。一是规范隐含的限制。Java 数组的 length 必须是非负的 int，所以它的理论最大值就是 java.lang.Integer.MAX_VALUE &#x3D; 2^31-1 &#x3D; 2147483647 位。二是具体的实现带来的限制。这会使得实际的JVM不一定能支持上面说的理论上的最大length。</p>
-<p>String 当是一个字符数组。字符是 2字节 16 位 的基本类型，那么一个 String 的最大长度是是 2 G，占用内存是 4GB。</p>
-<p><strong>问题</strong></p>
-<p>我的字符串肯定没有超过最大限制，但是字符串肯定超过了 2^16。「在IDEA中，字符串长度超过 65535，进行打印，IDEA会提示 <code>java: 常量字符串过长</code>」</p>
-<blockquote>
-<p>为什么会提醒我的字符串错过了 65535<br>引入文章： <a target="_blank" rel="noopener" href="https://blog.csdn.net/jayzym/article/details/103716868">https://blog.csdn.net/jayzym/article/details/103716868</a></p>
-</blockquote>
-<p><strong>编译期</strong></p>
-<p>当我们使用字符串字面量直接定义 String 的时候，是会把字符串在常量池中存储一份的。那么上面提到的 65534 其实是常量池的限制。<br>常量池中的每一种数据项也有自己的类型。Java 中的 UTF-8 编码的 Unicode 字符串在常量池中以 CONSTANT_Utf8 类型表示。<br>CONSTANTUtf8info 是一个 CONSTANTUtf8 类型的常量池数据项，它存储的是一个常量字符串。常量池中的所有字面量几乎都是通过 CONSTANTUtf8info 描述的。CONSTANTUtf8_info的定义如下：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CONSTANT<span class="emphasis">_Utf8_</span>info &#123;</span><br><span class="line"><span class="code">	u1 tag;     </span></span><br><span class="line"><span class="code">	u2 length;     </span></span><br><span class="line"><span class="code">	u1 bytes[length];</span></span><br><span class="line"><span class="code">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>我们使用字面量定义的字符串在 class 文件中，是使用 CONSTANTUtf8info 存储的，而 CONSTANTUtf8info 中有 u2 length; 表明了该类型存储数据的长度 u2 是无符号的 16 位整数，因此理论上允许的的最大长度是 2^16&#x3D;65536。而 java class 文件是使用一种变体 UTF-8 格式来存放字符的，null 值使用两个字节来表示，因此只剩下 65536－ 2 ＝ 65534 个字节。</p>
-<p>关于这一点，在the class file format spec中也有明确说明：</p>
-<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The length <span class="keyword">of</span> field <span class="built_in">and</span> method names, field <span class="built_in">and</span> method descriptors, <span class="built_in">and</span> other constant <span class="type">string</span> values <span class="built_in">is</span> limited <span class="keyword">to</span> <span class="number">65535</span> characters <span class="keyword">by</span> the <span class="number">16</span>-bit unsigned length item <span class="keyword">of</span> the CONSTANTUtf8info <span class="keyword">structure</span> (§<span class="number">4.4</span>.<span class="number">7</span>). Note that the limit <span class="built_in">is</span> <span class="keyword">on</span> the number <span class="keyword">of</span> bytes <span class="keyword">in</span> the encoding <span class="built_in">and</span> <span class="built_in">not</span> <span class="keyword">on</span> the number <span class="keyword">of</span> encoded characters. UTF-<span class="number">8</span> encodes some characters <span class="keyword">using</span> two <span class="built_in">or</span> three bytes. Thus, strings incorporating multibyte characters are further constrained.</span><br></pre></td></tr></table></figure>
-
-<p>也就是说，在Java中，所有需要保存在常量池中的数据，长度最大不能超过 65535，这当然也包括字符串的定义咯。</p>
-<p><strong>运行期</strong></p>
-<p>运行期的最大长度就是 Integer.MAX_VALUE ，这个值约等于 4G。</p>
-<h2 id="4-解决方案"><a href="#4-解决方案" class="headerlink" title="4. 解决方案"></a>4. 解决方案</h2><ol>
-<li>使用 StringBuilder 或者 StringBuffer。</li>
-<li>切换 Java 编译器，将 <code>javac</code> 切换为 <code>eclipse</code> 「Eclipse 编译器允许运行没有真正正确编译的代码」</li>
+        <ol>
+<li>字节  B  byte   这个单位是数据里面最重要的一个单位。</li>
+<li>究竟占多大的空间？这是一个很敏感的思考点。</li>
 </ol>
+<h2 id="1-单位转换（对于有些单位换算，换算相差其实是-1000）"><a href="#1-单位转换（对于有些单位换算，换算相差其实是-1000）" class="headerlink" title="1. 单位转换（对于有些单位换算，换算相差其实是 1000）"></a>1. 单位转换（对于有些单位换算，换算相差其实是 1000）</h2><p>1B（byte，字节）&#x3D; 8 bit；<br>1KB（Kibibyte，千字节）&#x3D;1024B&#x3D; $2^{10}$ B；<br>1MB（Mebibyte，兆字节，百万字节，简称“兆”）&#x3D;1024KB&#x3D; $2^{20}$ B；<br>1GB（Gigabyte，吉字节，十亿字节，又称“千兆”）&#x3D;1024MB&#x3D; $2^{30}$ B；<br>1TB（Terabyte，万亿字节，太字节）&#x3D;1024GB&#x3D; $2^{40}$ B；<br>1PB（Petabyte，千万亿字节，拍字节）&#x3D;1024TB&#x3D; $2^{50}$ B；<br>1EB（Exabyte，百亿亿字节，艾字节）&#x3D;1024PB&#x3D; $2^{60}$ B；<br>1ZB（Zettabyte，十万亿亿字节，泽字节）&#x3D;1024EB&#x3D; $2^{70}$ B；<br>1YB（Yottabyte，一亿亿亿字节，尧字节）&#x3D;1024ZB&#x3D; $2^{80}$ B；<br>1BB（Brontobyte，一千亿亿亿字节）&#x3D;1024YB&#x3D; $2^{90}$ B；<br>1NB（NonaByte，一百万亿亿亿字节）&#x3D;1024BB&#x3D; $2^{100}$ B；<br>1DB（DoggaByte，十亿亿亿亿字节）&#x3D;1024NB&#x3D; $2^{110}$ B；</p>
+<h2 id="2-数据存储与数据传输基本单位：B-与-bit"><a href="#2-数据存储与数据传输基本单位：B-与-bit" class="headerlink" title="2. 数据存储与数据传输基本单位：B 与 bit"></a>2. 数据存储与数据传输基本单位：B 与 bit</h2><p><strong>数据存储是以“字节”（Byte）为基本单位</strong><br><strong>数据传输是以大多是以“位”（bit，又名“比特”）为基本单位</strong></p>
+<p>一个位就代表一个 0 或 1（即二进制），每 8 个位（bit，简写为b）组成一个字节（Byte，简写为B），是最小一级的信息单位。</p>
+<h2 id="3-数据的两种形式转换-比如：0x10000000-x3D-256MB-？"><a href="#3-数据的两种形式转换-比如：0x10000000-x3D-256MB-？" class="headerlink" title="3. 数据的两种形式转换 比如：0x10000000 &#x3D; 256MB ？"></a>3. 数据的两种形式转换 比如：0x10000000 &#x3D; 256MB ？</h2><p>单位换算注意 进制的区别<br>    0xffffffff 「8位」&#x3D; ( 1111 1111 1111 1111 1111  1111 1111 1111 )2&#x3D;  2^32 &#x3D; 4G</p>
+<p>0x1000 0000 &#x3D;   (268 435 456)10  其实 ，这个数的单位是 B 字节<br>    268 435 456 B &#x3D; 262 144 KB &#x3D; 256 MB<br>（它们的进制是 1024 &#x3D;  0x400 &#x3D; 0 0100 0000 0000 &#x3D; $2^{10}$）</p>
 
     </div>
 
@@ -262,13 +240,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/05/31/B%20%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL/%E3%80%90MySQL%E3%80%91%E5%A4%A7%E6%95%B0%E9%87%8F%E4%B8%8B%E7%9A%84%E8%A1%A8%E7%BB%93%E6%9E%84%E8%B0%83%E6%95%B4/" rel="prev" title="【MySQL】大数量下的表结构调整">
-      <i class="fa fa-chevron-left"></i> 【MySQL】大数量下的表结构调整
+    <a href="/2023/06/01/B%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-Java/%E2%85%A0%20Java%20%E5%9F%BA%E7%A1%80/%E3%80%90Java%E3%80%91String%20%E5%B8%B8%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%87%E9%95%BF/" rel="prev" title="【Java】String 常量字符串过长">
+      <i class="fa fa-chevron-left"></i> 【Java】String 常量字符串过长
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/06/01/B%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Linux/I%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E3%80%91%E6%95%B0%E6%8D%AE%E5%8D%95%E4%BD%8D/" rel="next" title="【计算机】数据单位">
-      【计算机】数据单位 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -328,7 +303,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2"><span class="nav-text">1. 参考博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="nav-text">2. 问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%8E%A2%E7%A9%B6-String"><span class="nav-text">3. 探究 String</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">4. 解决方案</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8D%95%E4%BD%8D%E8%BD%AC%E6%8D%A2%EF%BC%88%E5%AF%B9%E4%BA%8E%E6%9C%89%E4%BA%9B%E5%8D%95%E4%BD%8D%E6%8D%A2%E7%AE%97%EF%BC%8C%E6%8D%A2%E7%AE%97%E7%9B%B8%E5%B7%AE%E5%85%B6%E5%AE%9E%E6%98%AF-1000%EF%BC%89"><span class="nav-text">1. 单位转换（对于有些单位换算，换算相差其实是 1000）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E4%B8%8E%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E5%9F%BA%E6%9C%AC%E5%8D%95%E4%BD%8D%EF%BC%9AB-%E4%B8%8E-bit"><span class="nav-text">2. 数据存储与数据传输基本单位：B 与 bit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BD%A2%E5%BC%8F%E8%BD%AC%E6%8D%A2-%E6%AF%94%E5%A6%82%EF%BC%9A0x10000000-x3D-256MB-%EF%BC%9F"><span class="nav-text">3. 数据的两种形式转换 比如：0x10000000 &#x3D; 256MB ？</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
