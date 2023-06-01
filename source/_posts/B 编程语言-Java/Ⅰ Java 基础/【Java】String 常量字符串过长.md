@@ -70,6 +70,3 @@ The length of field and method names, field and method descriptors, and other co
 
 1. 使用 StringBuilder 或者 StringBuffer。
 2. 切换 Java 编译器，将 `javac` 切换为 `eclipse` 「Eclipse 编译器允许运行没有真正正确编译的代码」
-
-
-
