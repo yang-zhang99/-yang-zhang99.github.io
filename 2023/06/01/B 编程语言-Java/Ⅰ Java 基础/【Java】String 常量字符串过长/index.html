@@ -22,23 +22,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="来自网络：缓存更新的套路 | 酷 壳 - CoolShell 其实并不只是软件架构里的 MySQL 数据库和 Memcache&#x2F;Redis 的更新策略，这些东西都是计算机体系结构里的设计，比如 CPU 的缓存，硬盘文件系统中的缓存，硬盘上的缓存，数据库中的缓存。基本上来说，这些缓存更新的设计模式都是非常老古董的，而且历经长时间考验的策略，所以这也就是，工程学上所谓的 Best Pract">
+  <meta name="description" content="1. 参考博客图片转 BASE64 编码： https:&#x2F;&#x2F;c.runoob.com&#x2F;front-end&#x2F;59&#x2F;图片与base64之间的互相转换「Java」： https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_41608476&#x2F;article&#x2F;details&#x2F;79354592 2. 问题描述在开发一个接口时间，对方接口需要图片的 BASE64 编码。  Base64 是一种基于 64 个可">
 <meta property="og:type" content="article">
-<meta property="og:title" content="缓存">
-<meta property="og:url" content="http://example.com/2023/03/13/%E7%AC%AC1-2%E7%AB%A0%20%E7%BC%93%E5%AD%98%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6/index.html">
+<meta property="og:title" content="【Java】String 常量字符串过长">
+<meta property="og:url" content="http://example.com/2023/06/01/B%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-Java/%E2%85%A0%20Java%20%E5%9F%BA%E7%A1%80/%E3%80%90Java%E3%80%91String%20%E5%B8%B8%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%87%E9%95%BF/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="来自网络：缓存更新的套路 | 酷 壳 - CoolShell 其实并不只是软件架构里的 MySQL 数据库和 Memcache&#x2F;Redis 的更新策略，这些东西都是计算机体系结构里的设计，比如 CPU 的缓存，硬盘文件系统中的缓存，硬盘上的缓存，数据库中的缓存。基本上来说，这些缓存更新的设计模式都是非常老古董的，而且历经长时间考验的策略，所以这也就是，工程学上所谓的 Best Pract">
+<meta property="og:description" content="1. 参考博客图片转 BASE64 编码： https:&#x2F;&#x2F;c.runoob.com&#x2F;front-end&#x2F;59&#x2F;图片与base64之间的互相转换「Java」： https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_41608476&#x2F;article&#x2F;details&#x2F;79354592 2. 问题描述在开发一个接口时间，对方接口需要图片的 BASE64 编码。  Base64 是一种基于 64 个可">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/source/_posts/_%E9%99%84%E4%BB%B6/Cache%20Aside%20Pattern.png">
-<meta property="og:image" content="http://example.com/source/_posts/_%E9%99%84%E4%BB%B6/ReadWriteThroughPattern.png">
-<meta property="og:image" content="http://example.com/source/_posts/_%E9%99%84%E4%BB%B6/Write%20Behind%20Caching%20Pattern.png">
-<meta property="article:published_time" content="2023-03-13T00:00:00.000Z">
-<meta property="article:modified_time" content="2023-06-01T09:03:32.783Z">
+<meta property="article:published_time" content="2023-06-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2023-06-01T09:03:32.671Z">
 <meta property="article:author" content="Yang99">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/source/_posts/_%E9%99%84%E4%BB%B6/Cache%20Aside%20Pattern.png">
 
-<link rel="canonical" href="http://example.com/2023/03/13/%E7%AC%AC1-2%E7%AB%A0%20%E7%BC%93%E5%AD%98%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6/">
+<link rel="canonical" href="http://example.com/2023/06/01/B%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-Java/%E2%85%A0%20Java%20%E5%9F%BA%E7%A1%80/%E3%80%90Java%E3%80%91String%20%E5%B8%B8%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%87%E9%95%BF/">
 
 
 <script id="page-configurations">
@@ -51,7 +47,7 @@
   };
 </script>
 
-  <title>缓存 | 个人博客</title>
+  <title>【Java】String 常量字符串过长 | 个人博客</title>
   
 
 
@@ -147,7 +143,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/13/%E7%AC%AC1-2%E7%AB%A0%20%E7%BC%93%E5%AD%98%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/06/01/B%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-Java/%E2%85%A0%20Java%20%E5%9F%BA%E7%A1%80/%E3%80%90Java%E3%80%91String%20%E5%B8%B8%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%87%E9%95%BF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -160,7 +156,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          缓存
+          【Java】String 常量字符串过长
         </h1>
 
         <div class="post-meta">
@@ -170,7 +166,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2023-03-13 00:00:00" itemprop="dateCreated datePublished" datetime="2023-03-13T00:00:00+00:00">2023-03-13</time>
+              <time title="创建时间：2023-06-01 00:00:00" itemprop="dateCreated datePublished" datetime="2023-06-01T00:00:00+00:00">2023-06-01</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -178,12 +174,16 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%93%E5%AD%98/" itemprop="url" rel="index"><span itemprop="name">缓存</span></a>
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-Java/" itemprop="url" rel="index"><span itemprop="name">编程语言-Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-Java/Java-%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java 基础</span></a>
                 </span>
             </span>
 
           
-            <span id="/2023/03/13/%E7%AC%AC1-2%E7%AB%A0%20%E7%BC%93%E5%AD%98%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6/" class="post-meta-item leancloud_visitors" data-flag-title="缓存" title="阅读次数">
+            <span id="/2023/06/01/B%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-Java/%E2%85%A0%20Java%20%E5%9F%BA%E7%A1%80/%E3%80%90Java%E3%80%91String%20%E5%B8%B8%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%87%E9%95%BF/" class="post-meta-item leancloud_visitors" data-flag-title="【Java】String 常量字符串过长" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -198,8 +198,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2023/03/13/%E7%AC%AC1-2%E7%AB%A0%20%E7%BC%93%E5%AD%98%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2023/03/13/%E7%AC%AC1-2%E7%AB%A0%20%E7%BC%93%E5%AD%98%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6/" itemprop="commentCount"></span>
+    <a title="valine" href="/2023/06/01/B%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-Java/%E2%85%A0%20Java%20%E5%9F%BA%E7%A1%80/%E3%80%90Java%E3%80%91String%20%E5%B8%B8%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%87%E9%95%BF/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/06/01/B%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-Java/%E2%85%A0%20Java%20%E5%9F%BA%E7%A1%80/%E3%80%90Java%E3%80%91String%20%E5%B8%B8%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%87%E9%95%BF/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -214,34 +214,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>来自网络：<a target="_blank" rel="noopener" href="https://coolshell.cn/articles/17416.html">缓存更新的套路 | 酷 壳 - CoolShell</a></p>
-<p>其实并不只是软件架构里的 MySQL 数据库和 Memcache&#x2F;Redis 的更新策略，这些东西都是计算机体系结构里的设计，比如 CPU 的缓存，硬盘文件系统中的缓存，硬盘上的缓存，数据库中的缓存。基本上来说，这些缓存更新的设计模式都是非常老古董的，而且历经长时间考验的策略，所以这也就是，工程学上所谓的 Best Practice，遵从就好了。</p>
-<p>更新缓存的的 Design Pattern 有四种：</p>
-<ol>
-<li>Cache aside</li>
-<li>Read through</li>
-<li>Write through</li>
-<li>Write behind caching</li>
+        <h2 id="1-参考博客"><a href="#1-参考博客" class="headerlink" title="1. 参考博客"></a>1. 参考博客</h2><p>图片转 BASE64 编码： <a target="_blank" rel="noopener" href="https://c.runoob.com/front-end/59/">https://c.runoob.com/front-end/59/</a><br>图片与base64之间的互相转换「Java」： <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41608476/article/details/79354592">https://blog.csdn.net/weixin_41608476/article/details/79354592</a></p>
+<h2 id="2-问题描述"><a href="#2-问题描述" class="headerlink" title="2. 问题描述"></a>2. 问题描述</h2><p>在开发一个接口时间，对方接口需要图片的 BASE64 编码。</p>
+<blockquote>
+<p>Base64 是一种基于 64 个可打印字符来表示二进制数据的表示方法。</p>
+<p>Base64 常用于在通常处理文本数据的场合，表示、传输、存储一些二进制数据，包括 MIME 的电子邮件及 XML 的一些复杂数据。<br>图片的 BASE64 编码就是可以将一幅图片数据编码成一串字符串，使用该字符串代替图片地址，从而不需要使用图片的 URL 地址。</p>
+</blockquote>
+<p>当 BASE64 编码的图片 赋值给 String 后，构建失败，提醒常量字符串过长。</p>
+<h2 id="3-探究-String"><a href="#3-探究-String" class="headerlink" title="3. 探究 String"></a>3. 探究 String</h2><p>基础知识：[[..&#x2F;..&#x2F;..&#x2F;1 想法&#x2F;【Java】2 数据类型#2.3 字符串 String]]<br>基础知识：[[..&#x2F;..&#x2F;B. 操作系统-Linux&#x2F;计算机基础知识&#x2F;数据单位]]</p>
+<p>在 Java8 之前，String 内部使用 char 类型数据存储数据， Java9 开始，该用 byte 类型数组来存储数据。所以 String 的最大存储就是数组能存储的最大数量。</p>
+<p>数组有两种限制。一是规范隐含的限制。Java 数组的 length 必须是非负的 int，所以它的理论最大值就是 java.lang.Integer.MAX_VALUE &#x3D; 2^31-1 &#x3D; 2147483647 位。二是具体的实现带来的限制。这会使得实际的JVM不一定能支持上面说的理论上的最大length。</p>
+<p>String 当是一个字符数组。字符是 2字节 16 位 的基本类型，那么一个 String 的最大长度是是 2 G，占用内存是 4GB。</p>
+<p><strong>问题</strong></p>
+<p>我的字符串肯定没有超过最大限制，但是字符串肯定超过了 2^16。「在IDEA中，字符串长度超过 65535，进行打印，IDEA会提示 <code>java: 常量字符串过长</code>」</p>
+<blockquote>
+<p>为什么会提醒我的字符串错过了 65535<br>引入文章： <a target="_blank" rel="noopener" href="https://blog.csdn.net/jayzym/article/details/103716868">https://blog.csdn.net/jayzym/article/details/103716868</a></p>
+</blockquote>
+<p><strong>编译期</strong></p>
+<p>当我们使用字符串字面量直接定义 String 的时候，是会把字符串在常量池中存储一份的。那么上面提到的 65534 其实是常量池的限制。<br>常量池中的每一种数据项也有自己的类型。Java 中的 UTF-8 编码的 Unicode 字符串在常量池中以 CONSTANT_Utf8 类型表示。<br>CONSTANTUtf8info 是一个 CONSTANTUtf8 类型的常量池数据项，它存储的是一个常量字符串。常量池中的所有字面量几乎都是通过 CONSTANTUtf8info 描述的。CONSTANTUtf8_info的定义如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CONSTANT<span class="emphasis">_Utf8_</span>info &#123;</span><br><span class="line"><span class="code">	u1 tag;     </span></span><br><span class="line"><span class="code">	u2 length;     </span></span><br><span class="line"><span class="code">	u1 bytes[length];</span></span><br><span class="line"><span class="code">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>我们使用字面量定义的字符串在 class 文件中，是使用 CONSTANTUtf8info 存储的，而 CONSTANTUtf8info 中有 u2 length; 表明了该类型存储数据的长度 u2 是无符号的 16 位整数，因此理论上允许的的最大长度是 2^16&#x3D;65536。而 java class 文件是使用一种变体 UTF-8 格式来存放字符的，null 值使用两个字节来表示，因此只剩下 65536－ 2 ＝ 65534 个字节。</p>
+<p>关于这一点，在the class file format spec中也有明确说明：</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The length <span class="keyword">of</span> field <span class="built_in">and</span> method names, field <span class="built_in">and</span> method descriptors, <span class="built_in">and</span> other constant <span class="type">string</span> values <span class="built_in">is</span> limited <span class="keyword">to</span> <span class="number">65535</span> characters <span class="keyword">by</span> the <span class="number">16</span>-bit unsigned length item <span class="keyword">of</span> the CONSTANTUtf8info <span class="keyword">structure</span> (§<span class="number">4.4</span>.<span class="number">7</span>). Note that the limit <span class="built_in">is</span> <span class="keyword">on</span> the number <span class="keyword">of</span> bytes <span class="keyword">in</span> the encoding <span class="built_in">and</span> <span class="built_in">not</span> <span class="keyword">on</span> the number <span class="keyword">of</span> encoded characters. UTF-<span class="number">8</span> encodes some characters <span class="keyword">using</span> two <span class="built_in">or</span> three bytes. Thus, strings incorporating multibyte characters are further constrained.</span><br></pre></td></tr></table></figure>
+
+<p>也就是说，在Java中，所有需要保存在常量池中的数据，长度最大不能超过 65535，这当然也包括字符串的定义咯。</p>
+<p><strong>运行期</strong></p>
+<p>运行期的最大长度就是 Integer.MAX_VALUE ，这个值约等于 4G。</p>
+<h2 id="4-解决方案"><a href="#4-解决方案" class="headerlink" title="4. 解决方案"></a>4. 解决方案</h2><ol>
+<li>使用 StringBuilder 或者 StringBuffer。</li>
+<li>切换 Java 编译器，将 <code>javac</code> 切换为 <code>eclipse</code> 「Eclipse 编译器允许运行没有真正正确编译的代码」</li>
 </ol>
-<h2 id="0-错误做法"><a href="#0-错误做法" class="headerlink" title="0 错误做法"></a>0 错误做法</h2><p>看到好些人在写更新缓存数据代码时，先删除缓存，然后再更新数据库，而后续的操作会把数据再装载的缓存中。然而，这个是逻辑是错误的。</p>
-<p>试想，两个并发操作，一个是更新操作，另一个是查询操作，更新操作删除缓存后，查询操作没有命中缓存，先把老数据读出来后放到缓存中，然后更新操作更新了数据库。于是，在缓存中的数据还是老的数据，导致缓存中的数据是脏的，而且还一直这样脏下去了。</p>
-<h2 id="1-Cache-Aside-Pattern"><a href="#1-Cache-Aside-Pattern" class="headerlink" title="1 Cache Aside Pattern"></a>1 Cache Aside Pattern</h2><ol>
-<li>失效：应用程序先从 Cache 取数据，没有得到，则从数据库中取数据，成功后，放到缓存中。</li>
-<li>命中：应用程序从 Cache 中取数据，取到后返回。</li>
-<li>更新：先把数据存到数据库中，成功后，再让缓存失效。<br><img src="/source/_posts/_%E9%99%84%E4%BB%B6/Cache%20Aside%20Pattern.png" alt="Cache Aside Pattern.png"></li>
-</ol>
-<h2 id="2-Read-x2F-Write-Through-Pattern"><a href="#2-Read-x2F-Write-Through-Pattern" class="headerlink" title="2 Read &#x2F; Write Through Pattern"></a>2 Read &#x2F; Write Through Pattern</h2><p>更新数据库（Repository）的操作由缓存自己代理了，所以，对于应用层来说，就简单很多了。<br>可以理解为，应用认为后端就是一个单一的存储，而存储自己维护自己的 Cache。</p>
-<ol>
-<li>Read Through：Read Through 套路就是在查询操作中更新缓存，也就是说，当缓存失效的时候（过期或LRU换出），Cache Aside 是由调用方负责把数据加载入缓存，而 Read Through 则用缓存服务自己来加载，从而对应用方是透明的。</li>
-<li>Write Through：Write Through 套路和 Read Through 相仿，不过是在更新数据时发生。当有数据更新的时候，如果没有命中缓存，直接更新数据库，然后返回。如果命中了缓存，则更新缓存，然后再由 Cache 自己更新数据库（这是一个同步操作）。<br><img src="/source/_posts/_%E9%99%84%E4%BB%B6/ReadWriteThroughPattern.png" alt="ReadWriteThroughPattern.png"></li>
-</ol>
-<h2 id="4-Write-Behind-Caching-Pattern"><a href="#4-Write-Behind-Caching-Pattern" class="headerlink" title="4 Write Behind Caching Pattern"></a>4 Write Behind Caching Pattern</h2><p>Linux 文件系统的 Page Cache 的算法。<br>在更新数据的时候，只更新缓存，不更新数据库，而我们的缓存会异步地批量更新数据库。</p>
-<ol>
-<li>这个设计的好处就是让数据的 I&#x2F;O 操作飞快无比（因为直接操作内存嘛 ），因为异步，write backg 还可以合并对同一个数据的多次操作，所以性能的提高是相当可观的。</li>
-<li>但是，其带来的问题是，数据不是强一致性的，而且可能会丢失（我们知道 Unix&#x2F;Linux 非正常关机会导致数据丢失，就是因为这个事）。<br><img src="/source/_posts/_%E9%99%84%E4%BB%B6/Write%20Behind%20Caching%20Pattern.png" alt="Write Behind Caching Pattern.png"></li>
-</ol>
-<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5 总结"></a>5 总结</h2><p>在软件设计上，我们基本上不可能做出一个没有缺陷的设计，就像算法设计中的时间换空间，空间换时间一个道理，有时候，强一致性和高性能，高可用和高性性是有冲突的。软件设计从来都是取舍 Trade-Off。</p>
-<p>另外，Write Back 实现逻辑比较复杂，因为他需要 Track 有哪数据是被更新了的，需要刷到持久层上。操作系统的 write back 会在仅当这个 cache 需要失效的时候，才会被真正持久起来，比如，内存不够了，或是进程退出了等情况，这又叫 lazy write。</p>
 
     </div>
 
@@ -258,11 +261,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2023/03/13/HTTP%20%E7%8A%B6%E6%80%81%E7%A0%81/" rel="next" title="HTTP 状态码">
-      HTTP 状态码 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/05/31/B%20%E6%95%B0%E6%8D%AE%E5%BA%93-MySQL/%E3%80%90MySQL%E3%80%91%E5%A4%A7%E6%95%B0%E9%87%8F%E4%B8%8B%E7%9A%84%E8%A1%A8%E7%BB%93%E6%9E%84%E8%B0%83%E6%95%B4/" rel="prev" title="【MySQL】大数量下的表结构调整">
+      <i class="fa fa-chevron-left"></i> 【MySQL】大数量下的表结构调整
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -322,7 +325,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-%E9%94%99%E8%AF%AF%E5%81%9A%E6%B3%95"><span class="nav-text">0 错误做法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Cache-Aside-Pattern"><span class="nav-text">1 Cache Aside Pattern</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Read-x2F-Write-Through-Pattern"><span class="nav-text">2 Read &#x2F; Write Through Pattern</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Write-Behind-Caching-Pattern"><span class="nav-text">4 Write Behind Caching Pattern</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%80%BB%E7%BB%93"><span class="nav-text">5 总结</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2"><span class="nav-text">1. 参考博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="nav-text">2. 问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%8E%A2%E7%A9%B6-String"><span class="nav-text">3. 探究 String</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">4. 解决方案</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
